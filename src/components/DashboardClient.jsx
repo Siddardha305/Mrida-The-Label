@@ -130,12 +130,16 @@ export default function DashboardClient({ initialSarees }) {
       const result = await updateSaree(selectedSaree.id, formData);
       if (result.success) {
         setSarees(prev => prev.map(s => s.id === selectedSaree.id ? result.saree : s));
+      } else {
+        throw new Error(result.error || "Failed to update saree");
       }
     } else {
       // Add mode
       const result = await addSaree(formData);
       if (result.success) {
         setSarees(prev => [result.saree, ...prev]);
+      } else {
+        throw new Error(result.error || "Failed to add saree");
       }
     }
     setIsFormOpen(false);

@@ -198,7 +198,7 @@ export default function SareeForm({ saree, onClose, onSubmit }) {
       onClose();
     } catch (error) {
       console.error("Error submitting form:", error);
-      setErrors({ form: "An error occurred while saving the saree." });
+      setErrors({ form: error.message || "An error occurred while saving the saree." });
     } finally {
       setIsSubmitting(false);
     }
